@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# SQL Server Management Studio Solution File, Format Version 14.00
+VisualStudioVersion = 14.0.23107.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Arquivos", "Arquivos", "{A699744E-810C-4F23-8B21-4AC5D5E47E5E}"
+	ProjectSection(SolutionItems) = preProject
+		Treinamento Powercenter\Atualizações.sql = Treinamento Powercenter\Atualizações.sql
+		Treinamento Powercenter\CargaDimensional.sql = Treinamento Powercenter\CargaDimensional.sql
+		Treinamento Powercenter\CargaTransacional.sql = Treinamento Powercenter\CargaTransacional.sql
+		Treinamento Powercenter\DB_DW_SQL_SERVER.sql = Treinamento Powercenter\DB_DW_SQL_SERVER.sql
+		Treinamento Powercenter\DB_ERP_SQL_SERVER.sql = Treinamento Powercenter\DB_ERP_SQL_SERVER.sql
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Default|Default = Default|Default
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{82B6DF97-7152-43A4-B50D-08D449260229}.Default|Default.ActiveCfg = Default
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

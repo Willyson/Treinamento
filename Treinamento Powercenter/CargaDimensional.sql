@@ -1,6 +1,8 @@
 -- =================================================================================
 -- = ATUALIZA OS CLIENTES DO DIMENSIONAL QUE JÁ ESTÃO NA BASE PORÉM HOUVE ALTERAÇÃO
 -- =================================================================================
+USE DW_DB
+GO
 
 UPDATE DIMENSAOCLIENTE 
 SET DATAFIMVALIDADE = GETDATE()
@@ -293,9 +295,9 @@ INSERT INTO DIMENSAOLOCALIDADE (SGESTADO, NOESTADO, NOREGIAO) VALUES ('DF', 'Dis
 
 
 
--- ================
--- = PRIMEIRO ITEM
--- ================
+-- ===================
+-- = INSERE ODSVENDAS
+-- ===================
 
 INSERT INTO ODSVENDAS 
 SELECT CHAVEVENDEDOR, 
@@ -309,9 +311,9 @@ SELECT CHAVEVENDEDOR,
 FROM [dbo].[FATOVENDAS]
 
 
--- ===============
--- = SEGUNDO ITEM
--- ===============
+-- ===================================
+-- = ATUALIZA A FAIXA DE CADA CLIENTE
+-- ===================================
 
 UPDATE FATOVENDAS
 SET CHAVEFAIXA = TAB.CHAVEFAIXA
@@ -333,6 +335,9 @@ WHERE CHAVECLIENTE = TAB.IDCLIENTE
 
 
 
+-- ================================
+-- = ATUALIZA A LOCALIDADE NA FATO
+-- ================================
 
 UPDATE FATOVENDAS
 SET CHAVELOCALIDADE = TAB.CHAVELOCALIDADE
@@ -401,9 +406,9 @@ WHERE DT.DATA IN
 )
 
 
--- ==============
--- = QUARTO ITEM
--- ==============
+-- ================================
+-- = PREENCHE TABELA POR TRIMESTRE
+-- ================================
 
 
 WITH TRIMESTRE AS 
