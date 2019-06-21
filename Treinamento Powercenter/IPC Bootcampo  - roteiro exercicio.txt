@@ -1,0 +1,85 @@
+Banco de dados
+ criar os registros de exceção em todas dimensões
+   -1 não informado
+   -2 não cadastrado 
+   -3 não se aplica
+
+
+Modulo 1: Overview Página 31
+Modulo 2: Mapping Fundamentals Página 63
+
+Lab 2-1
+  a. importar a estrutura do arquivo de faixa etária e fazer preview
+  b. importar a estrutura do arquivo de localidade
+  c. importar as tabelas do sistema Transacional e fazer preview
+  d. importar as tabelas do DW
+  
+Lab 2-2
+  a. criar manualmente um target flat file com a estrutura da cliente
+  b. criar os targets do DW a partir do source
+  
+  
+ Lab 2-3
+  a. criar o shourtcut para source faixa etária
+  b. criar o shortcut para target faixa etária
+
+  
+ 
+Lab 3-1
+  a. criar o workflow para faixa etária
+
+
+Lab 4-1
+  a. criar um mapa para extração de clientes e gravar em um flat file 
+  b. criar um mapa e workflow para carregar a dimensão localidade
+  c. usar o expression para gravar o nome do estado e região em maiúsculo.
+ 
+  
+  
+Lab 5-1
+  
+  Join homogênio
+    a. criar mapa que faça um join entre produto e categoria. 
+	b. gravar a dimensão de produto em flat file
+ 
+  Join Heterogênio
+    
+    a. criar um mapa que faça o join entre o cliente (flat file) e a tabela CLIENTE_ATR 
+    b. Usar um filtro para selecionar somente os clientes que possuem data de nascimento preenchida
+	c. criar uma expression reutilizável que calcule a idade do cliente 
+
+  
+Lab 6
+    a. alterar o mapa da dimensão de cliente 
+    b. criar um lookup para obter o id da localidade 
+
+	c. criar um mapa que carregue os dados da ODS Vendas para Fato Vendas
+	d. usar uma expression para calcular o valor liquido
+	e. usar a expression reutilizável para calcular a idade do cliente na data da venda
+	
+	
+Lab 7 
+    a. criar uma mapa que lê a fato vendas e grave a fato vendas mês
+    b. usar uma expression para calcular o último dia do Mês
+    c. criar uma mapa que lê a fato vendas e grave a fato vendas trimestre
+	d. usar uma expression para calcular o último dia do trimestre
+	
+Lab 9 
+    a. atualizar as tabelas de cliente e produto
+	b. criar uma lógica para validar se o registro é novo, alterado, ou sem alteração.
+	c. aplicar INSERT em casa de NOVO, UPDATE em caso de alterado, e nenhuma ação se não tiver modificação.
+	
+	
+Lab 10
+    a. gerar alguma análise e gravar em .csv	
+	
+	
+Lab 11. 
+    a. calcular alguma funcionalidade em um mapplet.
+
+Lab 12
+    a. organizar a carga de todos mapas em um único workflow 
+	
+Lab 13
+    a. Desenvolver os mapas que estão faltando para a carga via Powercenter.
+  

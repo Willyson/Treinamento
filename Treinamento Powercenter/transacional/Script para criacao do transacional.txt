@@ -1,0 +1,188 @@
+-- Table: relacional.categoria
+
+-- DROP TABLE relacional.categoria;
+
+CREATE TABLE relacional.categoria
+(
+    idcategoria integer NOT NULL DEFAULT nextval('relacional.idcategoria'::regclass),
+    categoria character varying(100) COLLATE pg_catalog."default",
+    CONSTRAINT categoria_pkey PRIMARY KEY (idcategoria)
+)
+WITH (
+    OIDS = FALSE
+)
+TABLESPACE pg_default;
+
+ALTER TABLE relacional.categoria
+    OWNER to trn_usr;
+	
+	
+	
+-- Table: relacional.cliente_atr
+
+-- DROP TABLE relacional.cliente_atr;
+
+CREATE TABLE relacional.cliente_atr
+(
+    idcliente integer NOT NULL,
+    dtnascimento date NOT NULL
+)
+WITH (
+    OIDS = FALSE
+)
+TABLESPACE pg_default;
+
+ALTER TABLE relacional.cliente_atr
+    OWNER to trn_usr;
+	
+	
+-- Table: relacional.clientes
+
+-- DROP TABLE relacional.clientes;
+
+CREATE TABLE relacional.clientes
+(
+    idcliente integer NOT NULL DEFAULT nextval('relacional.idcliente'::regclass),
+    cliente character varying(50) COLLATE pg_catalog."default",
+    estado character varying(2) COLLATE pg_catalog."default",
+    sexo character(1) COLLATE pg_catalog."default",
+    status character varying(50) COLLATE pg_catalog."default",
+    CONSTRAINT clientes_pkey PRIMARY KEY (idcliente)
+)
+WITH (
+    OIDS = FALSE
+)
+TABLESPACE pg_default;
+
+ALTER TABLE relacional.clientes
+    OWNER to trn_usr;
+	
+-- Table: relacional.itensvenda
+
+-- DROP TABLE relacional.itensvenda;
+
+CREATE TABLE relacional.itensvenda
+(
+    idproduto integer NOT NULL,
+    idvenda integer NOT NULL,
+    quantidade integer,
+    valorunitario numeric(10,2),
+    valortotal numeric(10,2),
+    desconto numeric(10,2),
+    CONSTRAINT itensvenda_pkey PRIMARY KEY (idproduto, idvenda),
+    CONSTRAINT itensvenda_idproduto_fkey FOREIGN KEY (idproduto)
+        REFERENCES relacional.produtos (idproduto) MATCH SIMPLE
+        ON UPDATE NO ACTION
+        ON DELETE RESTRICT,
+    CONSTRAINT itensvenda_idvenda_fkey FOREIGN KEY (idvenda)
+        REFERENCES relacional.vendas (idvenda) MATCH SIMPLE
+        ON UPDATE NO ACTION
+        ON DELETE CASCADE
+)
+WITH (
+    OIDS = FALSE
+)
+TABLESPACE pg_default;
+
+ALTER TABLE relacional.itensvenda
+    OWNER to trn_usr;
+	
+	
+	
+-- Table: relacional.produtos
+
+-- DROP TABLE relacional.produtos;
+
+CREATE TABLE relacional.produtos
+(
+    idproduto integer NOT NULL DEFAULT nextval('relacional.idproduto'::regclass),
+    produto character varying(100) COLLATE pg_catalog."default",
+    preco numeric(10,2),
+    CONSTRAINT produtos_pkey PRIMARY KEY (idproduto)
+)
+WITH (
+    OIDS = FALSE
+)
+TABLESPACE pg_default;
+
+ALTER TABLE relacional.produtos
+    OWNER to trn_usr;
+
+	
+	
+	
+	
+-- Table: relacional.vendas
+
+-- DROP TABLE relacional.vendas;
+
+CREATE TABLE relacional.vendas
+(
+    idvenda integer NOT NULL DEFAULT nextval('relacional.idvenda'::regclass),
+    idvendedor integer,
+    idcliente integer,
+    data date,
+    total numeric(10,2),
+    CONSTRAINT vendas_pkey PRIMARY KEY (idvenda),
+    CONSTRAINT vendas_idcliente_fkey FOREIGN KEY (idcliente)
+        REFERENCES relacional.clientes (idcliente) MATCH SIMPLE
+        ON UPDATE NO ACTION
+        ON DELETE NO ACTION,
+    CONSTRAINT vendas_idvendedor_fkey FOREIGN KEY (idvendedor)
+        REFERENCES relacional.vendedores (idvendedor) MATCH SIMPLE
+        ON UPDATE NO ACTION
+        ON DELETE NO ACTION
+)
+WITH (
+    OIDS = FALSE
+)
+TABLESPACE pg_default;
+
+ALTER TABLE relacional.vendas
+    OWNER to trn_usr;
+	
+	
+	
+-- Table: relacional.vendedores
+
+-- DROP TABLE relacional.vendedores;
+
+CREATE TABLE relacional.vendedores
+(
+    idvendedor integer NOT NULL DEFAULT nextval('relacional.idvendedor'::regclass),
+    nome character varying(50) COLLATE pg_catalog."default",
+    CONSTRAINT vendedores_pkey PRIMARY KEY (idvendedor)
+)
+WITH (
+    OIDS = FALSE
+)
+TABLESPACE pg_default;
+
+ALTER TABLE relacional.vendedores
+    OWNER to trn_usr;
+	
+	
+	
+	
+-- Table: relacional.vinculacao_produto_categoria
+
+-- DROP TABLE relacional.vinculacao_produto_categoria;
+
+CREATE TABLE relacional.vinculacao_produto_categoria
+(
+    idvinculacao integer NOT NULL DEFAULT nextval('relacional.idvinculacao'::regclass),
+    idcategoria integer NOT NULL,
+    idproduto integer NOT NULL,
+    CONSTRAINT vinculacao_pkey PRIMARY KEY (idvinculacao)
+)
+WITH (
+    OIDS = FALSE
+)
+TABLESPACE pg_default;
+
+ALTER TABLE relacional.vinculacao_produto_categoria
+    OWNER to trn_usr;
+	
+	
+	
+	

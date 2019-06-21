@@ -1,0 +1,14 @@
+chavevendedor,idvendedor,nome,datainiciovalidade,datafimvalidade
+1,1,Armando Lago,2019-05-02,
+2,2,Capitolino Bahía,2019-05-02,
+3,3,Daniel Pirajá,2019-05-02,
+4,4,Godo Capiperibe,2019-05-02,
+5,5,Hélio Liberato,2019-05-02,
+6,6,Iberê Lacerda,2019-05-02,
+7,7,Jéssica Castelão,2019-05-02,
+8,8,Napoleão Méndez,2019-05-02,
+9,9,Simão Rivero,2019-05-02,
+10,10,Tobias Furtado,2019-05-02,
+-1,0,0,1900-01-01,1900-01-01
+-2,0,0,1900-01-01,1900-01-01
+-3,0,0,1900-01-01,1900-01-01

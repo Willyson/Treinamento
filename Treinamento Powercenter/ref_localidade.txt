@@ -1,0 +1,27 @@
+#SG_ESTADO	NO_ESTADO	NO_REGIAO
+AM	Amazonas 	Norte
+RR	Roraima 	Norte
+AP	Amapá 	Norte
+PA	Pará 	Norte
+TO	Tocantins 	Norte
+RO	Rondônia 	Norte
+AC	Acre 	Norte
+MA	Maranhão 	Nordeste
+PI	Piauí 	Nordeste
+CE	Ceará 	Nordeste
+RN	Rio Grande do Norte 	Nordeste
+PE	Pernambuco 	Nordeste
+PB	Paraíba 	Nordeste
+SE	Sergipe 	Nordeste
+AL	Alagoas 	Nordeste
+BA	Bahia 	Nordeste
+MT	Mato Grosso 	Centro-Oeste
+MS	Mato Grosso do Sul 	Centro-Oeste
+GO	Goiás 	Centro-Oeste
+SP	São Paulo 	Sudeste
+RJ	Rio de Janeiro 	Sudeste
+ES	Espírito Santo 	Sudeste
+MG	Minas Gerais 	Sudeste
+PR	Paraná 	Sul
+RS	Rio Grande do Sul 	Sul
+SC	Santa Catarina 	Sul

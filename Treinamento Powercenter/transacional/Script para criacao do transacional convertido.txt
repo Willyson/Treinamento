@@ -1,0 +1,125 @@
+-- Table: admin.categoria
+
+-- DROP TABLE admin.categoria;
+
+CREATE TABLE admin.categoria
+(
+    idcategoria number(10) NOT NULL ,
+    categoria varchar2(100),
+    CONSTRAINT categoria_pkey PRIMARY KEY (idcategoria)
+);
+	
+	
+-- Table: admin.cliente_atr
+
+-- DROP TABLE admin.cliente_atr;
+
+CREATE TABLE admin.cliente_atr
+(
+    idcliente number(10) NOT NULL,
+    dtnascimento date NOT NULL
+);
+	
+-- Table: admin.clientes
+
+-- DROP TABLE admin.clientes;
+
+CREATE TABLE admin.clientes
+(
+    idcliente number(10) NOT NULL ,
+    cliente varchar2(50),
+    estado varchar2(2),
+    sexo character(1),
+    status varchar2(50),
+    CONSTRAINT clientes_pkey PRIMARY KEY (idcliente)
+);
+
+ALTER TABLE admin.clientes
+    OWNER to trn_usr;
+	
+-- Table: admin.itensvenda
+
+-- DROP TABLE admin.itensvenda;
+
+CREATE TABLE admin.itensvenda
+(
+    idproduto number(10) NOT NULL,
+    idvenda number(10) NOT NULL,
+    quantidade number(10),
+    valorunitario number(10,2),
+    valortotal number(10,2),
+    desconto number(10,2),
+    CONSTRAINT itensvenda_pkey PRIMARY KEY (idproduto, idvenda),
+    CONSTRAINT itensvenda_idproduto_fkey FOREIGN KEY (idproduto)
+        REFERENCES admin.produtos (idproduto),
+    CONSTRAINT itensvenda_idvenda_fkey FOREIGN KEY (idvenda)
+        REFERENCES admin.vendas (idvenda)
+);
+	
+	
+	
+-- Table: admin.produtos
+
+-- DROP TABLE admin.produtos;
+
+CREATE TABLE admin.produtos
+(
+    idproduto number(10) NOT NULL ,
+    produto varchar2(100),
+    preco number(10,2),
+    CONSTRAINT produtos_pkey PRIMARY KEY (idproduto)
+);
+
+	
+	
+	
+	
+-- Table: admin.vendas
+
+-- DROP TABLE admin.vendas;
+
+CREATE TABLE admin.vendas
+(
+    idvenda number(10) NOT NULL ,
+    idvendedor number(10),
+    idcliente number(10),
+    data date,
+    total number(10,2),
+    CONSTRAINT vendas_pkey PRIMARY KEY (idvenda),
+    CONSTRAINT vendas_idcliente_fkey FOREIGN KEY (idcliente)
+        REFERENCES admin.clientes (idcliente),
+    CONSTRAINT vendas_idvendedor_fkey FOREIGN KEY (idvendedor)
+        REFERENCES admin.vendedores (idvendedor)
+);
+	
+	
+	
+-- Table: admin.vendedores
+
+-- DROP TABLE admin.vendedores;
+
+CREATE TABLE admin.vendedores
+(
+    idvendedor number(10) NOT NULL ,
+    nome varchar2(50),
+    CONSTRAINT vendedores_pkey PRIMARY KEY (idvendedor)
+);
+	
+	
+	
+	
+-- Table: admin.vinculacao_produto_categoria
+
+-- DROP TABLE admin.vinculacao_produto_categoria;
+
+CREATE TABLE admin.vinculacao_produto_categoria
+(
+    idvinculacao number(10) NOT NULL ,
+    idcategoria number(10) NOT NULL,
+    idproduto number(10) NOT NULL,
+    CONSTRAINT vinculacao_pkey PRIMARY KEY (idvinculacao)
+);
+	
+	
+	
+	

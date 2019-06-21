@@ -1,0 +1,271 @@
+-- Table: admin.dimensaocliente
+
+-- DROP TABLE admin.dimensaocliente;
+
+CREATE TABLE admin.dimensaocliente
+(
+    chavecliente number(10) NOT NULL ,
+    idcliente number(10),
+    cliente varchar2(50),
+    sexo character(1),
+    status varchar2(50),
+    chavefaixa number(10),
+    chavelocalidade number(10),
+    datainiciovalidade date NOT NULL,
+    datafimvalidade date,
+    CONSTRAINT newdimensaocliente_pkey PRIMARY KEY (chavecliente),
+    CONSTRAINT newdimensaocliente_chavefaixa_fkey FOREIGN KEY (chavefaixa)
+        REFERENCES admin.dimensaofaixaetaria (chavefaixa) 
+       
+        ,
+    CONSTRAINT newdimensaocliente_chavelocalidade_fkey FOREIGN KEY (chavelocalidade)
+        REFERENCES admin.dimensaolocalidade (chavelocalidade) 
+       
+        
+);
+	
+	
+-- Table: admin.dimensaofaixaetaria
+
+-- DROP TABLE admin.dimensaofaixaetaria;
+
+CREATE TABLE admin.dimensaofaixaetaria
+(
+    chavefaixa number(10) NOT NULL ,
+    chaveinicio number(10),
+    chavefim number(10),
+    defaixa varchar2(20),
+    CONSTRAINT dimensaofaixaetaria_pkey PRIMARY KEY (chavefaixa)
+);
+	
+	
+-- Table: admin.dimensaolocalidade
+
+-- DROP TABLE admin.dimensaolocalidade;
+
+CREATE TABLE admin.dimensaolocalidade
+(
+    chavelocalidade number(10) NOT NULL ,
+    sgestado varchar2(2),
+    noestado varchar2(20),
+    noregiao varchar2(20),
+    CONSTRAINT dimensaolocalidade_pkey PRIMARY KEY (chavelocalidade)
+);
+	
+	
+	
+	
+-- Table: admin.dimensaoproduto
+
+-- DROP TABLE admin.dimensaoproduto;
+
+CREATE TABLE admin.dimensaoproduto
+(
+    chaveproduto number(10) NOT NULL ,
+    idproduto number(10),
+    produto varchar2(100),
+    categoria varchar2(100),
+    datainiciovalidade date NOT NULL,
+    datafimvalidade date,
+    CONSTRAINT newdimensaoproduto_pkey PRIMARY KEY (chaveproduto)
+);
+	
+	
+-- Table: admin.dimensaotempo
+
+-- DROP TABLE admin.dimensaotempo;
+
+CREATE TABLE admin.dimensaotempo
+(
+    chavetempo number(10) NOT NULL ,
+    data date,
+    dia number(10),
+    mes number(10),
+    ano number(10),
+    diasemana number(10),
+    trimestre number(10),
+    CONSTRAINT dimensaotempo_pkey PRIMARY KEY (chavetempo)
+);
+	
+	
+	
+-- Table: admin.dimensaovendedor
+
+-- DROP TABLE admin.dimensaovendedor;
+
+CREATE TABLE admin.dimensaovendedor
+(
+    chavevendedor number(10) NOT NULL ,
+    idvendedor number(10),
+    nome varchar2(50),
+    datainiciovalidade date NOT NULL,
+    datafimvalidade date,
+    CONSTRAINT dimensaovendedor_pkey PRIMARY KEY (chavevendedor)
+);
+	
+	
+-- Table: admin.fatovendas
+
+-- DROP TABLE admin.fatovendas;
+
+CREATE TABLE admin.fatovendas
+(
+    chavevendas number(10) NOT NULL ,
+    chavevendedor number(10),
+    chavecliente number(10),
+    chavelocalidade number(10),
+    chavefaixa number(10),
+    chaveproduto number(10),
+    chavetempo number(10),
+    quantidade number(10),
+    valorunitario number(10,2),
+    valortotal number(10,2),
+    valordesconto number(10,2),
+    valorliquido number(10,2),
+    CONSTRAINT fatovendas_pkey1 PRIMARY KEY (chavevendas),
+    CONSTRAINT fatovendas_chavecliente_fkey1 FOREIGN KEY (chavecliente)
+        REFERENCES admin.dimensaocliente (chavecliente) 
+       
+        ,
+    CONSTRAINT fatovendas_chavefaixa_fkey FOREIGN KEY (chavefaixa)
+        REFERENCES admin.dimensaofaixaetaria (chavefaixa) 
+       
+        ,
+    CONSTRAINT fatovendas_chavelocalidade_fkey FOREIGN KEY (chavelocalidade)
+        REFERENCES admin.dimensaolocalidade (chavelocalidade) 
+       
+        ,
+    CONSTRAINT fatovendas_chaveproduto_fkey1 FOREIGN KEY (chaveproduto)
+        REFERENCES admin.dimensaoproduto (chaveproduto) 
+       
+        ,
+    CONSTRAINT fatovendas_chavetempo_fkey1 FOREIGN KEY (chavetempo)
+        REFERENCES admin.dimensaotempo (chavetempo) 
+       
+        ,
+    CONSTRAINT fatovendas_chavevendedor_fkey1 FOREIGN KEY (chavevendedor)
+        REFERENCES admin.dimensaovendedor (chavevendedor) 
+       
+        
+)
+WITH (
+    OIDS = FALSE
+)
+TABLESPACE pg_default;
+
+ALTER TABLE admin.fatovendas
+    OWNER to trn_usr;
+	
+-- Table: admin.fatovendasmes
+
+-- DROP TABLE admin.fatovendasmes;
+
+CREATE TABLE admin.fatovendasmes
+(
+    chavevendas number(10) NOT NULL ,
+    chavevendedor number(10),
+    chavelocalidade number(10),
+    chavefaixa number(10),
+    chaveproduto number(10),
+    chavetempo number(10),
+    quantidade number(10),
+    valortotal number(10,2),
+    valordesconto number(10,2),
+    valorliquido number(10,2),
+    CONSTRAINT fatovendasmes_pkey PRIMARY KEY (chavevendas),
+    CONSTRAINT fatovendasmes_chavefaixa_fkey FOREIGN KEY (chavefaixa)
+        REFERENCES admin.dimensaofaixaetaria (chavefaixa) 
+       
+        ,
+    CONSTRAINT fatovendasmes_chavelocalidade_fkey FOREIGN KEY (chavelocalidade)
+        REFERENCES admin.dimensaolocalidade (chavelocalidade) 
+       
+        ,
+    CONSTRAINT fatovendasmes_chaveproduto_fkey FOREIGN KEY (chaveproduto)
+        REFERENCES admin.dimensaoproduto (chaveproduto) 
+       
+        ,
+    CONSTRAINT fatovendasmes_chavetempo_fkey FOREIGN KEY (chavetempo)
+        REFERENCES admin.dimensaotempo (chavetempo) 
+       
+        ,
+    CONSTRAINT fatovendasmes_chavevendedor_fkey FOREIGN KEY (chavevendedor)
+        REFERENCES admin.dimensaovendedor (chavevendedor) 
+       
+        
+);
+	
+	
+-- Table: admin.fatovendastrimestre
+
+-- DROP TABLE admin.fatovendastrimestre;
+
+CREATE TABLE admin.fatovendastrimestre
+(
+    chavevendas number(10) NOT NULL ,
+    chavevendedor number(10),
+    chavelocalidade number(10),
+    chavefaixa number(10),
+    chaveproduto number(10),
+    chavetempo number(10),
+    quantidade number(10),
+    valortotal number(10,2),
+    valordesconto number(10,2),
+    valorliquido number(10,2),
+    CONSTRAINT fatovendastrimestre_pkey PRIMARY KEY (chavevendas),
+    CONSTRAINT fatovendastrimestre_chavefaixa_fkey FOREIGN KEY (chavefaixa)
+        REFERENCES admin.dimensaofaixaetaria (chavefaixa) 
+       
+        ,
+    CONSTRAINT fatovendastrimestre_chavelocalidade_fkey FOREIGN KEY (chavelocalidade)
+        REFERENCES admin.dimensaolocalidade (chavelocalidade) 
+       
+        ,
+    CONSTRAINT fatovendastrimestre_chaveproduto_fkey FOREIGN KEY (chaveproduto)
+        REFERENCES admin.dimensaoproduto (chaveproduto) 
+       
+        ,
+    CONSTRAINT fatovendastrimestre_chavetempo_fkey FOREIGN KEY (chavetempo)
+        REFERENCES admin.dimensaotempo (chavetempo) 
+       
+        ,
+    CONSTRAINT fatovendastrimestre_chavevendedor_fkey FOREIGN KEY (chavevendedor)
+        REFERENCES admin.dimensaovendedor (chavevendedor) 
+       
+        
+);
+
+
+-- Table: admin.odsvendas
+
+-- DROP TABLE admin.odsvendas;
+
+CREATE TABLE admin.odsvendas
+(
+    chavevendas number(10) NOT NULL ,
+    chavevendedor number(10),
+    chavecliente number(10),
+    chaveproduto number(10),
+    chavetempo number(10),
+    quantidade number(10),
+    valorunitario number(10,2),
+    valortotal number(10,2),
+    valordesconto number(10,2),
+    CONSTRAINT fatovendas_pkey PRIMARY KEY (chavevendas),
+    CONSTRAINT fatovendas_chavecliente_fkey FOREIGN KEY (chavecliente)
+        REFERENCES admin.dimensaocliente (chavecliente) 
+       
+        ,
+    CONSTRAINT fatovendas_chaveproduto_fkey FOREIGN KEY (chaveproduto)
+        REFERENCES admin.dimensaoproduto (chaveproduto) 
+       
+        ,
+    CONSTRAINT fatovendas_chavetempo_fkey FOREIGN KEY (chavetempo)
+        REFERENCES admin.dimensaotempo (chavetempo) 
+       
+        ,
+    CONSTRAINT fatovendas_chavevendedor_fkey FOREIGN KEY (chavevendedor)
+        REFERENCES admin.dimensaovendedor (chavevendedor) 
+       
+        
+);

@@ -1,0 +1,7 @@
+#INICIO;FIM;DESCRICAO
+0;12;0 A 12 Anos
+13;17;13 a 17 Anos
+18;25;18 a 25 Anos
+26;45;26 a 45 Anos
+46;60;46 a 60 Anos
+61;999;Acima de 60 Anos
